@@ -1,4 +1,8 @@
-const initialFriends = [
+import FormAddFriend from "./components/FormAddFriend";
+import FriendList from "./components/FriendList";
+import Button from "./components/Button";
+
+export const initialFriends = [
 	{
 		id: 118836,
 		name: "Clark",
@@ -24,43 +28,9 @@ export default function App() {
 		<div className="app">
 			<div className="sidebar">
 				<FriendList />
+				<FormAddFriend />
+				<Button>Add friend</Button>
 			</div>
 		</div>
-	);
-}
-
-function FriendList() {
-	const friends = initialFriends;
-	return (
-		<ul>
-			{friends.map((friend) => (
-				<Friend friend={friend} key={friend.id} />
-			))}
-		</ul>
-	);
-}
-
-function Friend({ friend: { id, name, image, balance } }) {
-	return (
-		<li>
-			<img src={image} alt={`${name}-img`} />
-			<h3>{name}</h3>
-			{balance < 0 && (
-				<p className="red">
-					You owe {name} N{Math.abs(balance)}
-				</p>
-			)}
-			{balance > 0 && (
-				<p className="green">
-					{name} owes You N{Math.abs(balance)}
-				</p>
-			)}
-			{balance === 0 && (
-				<p>
-					You and {name} are even
-				</p>
-			)}
-			<button className="button">Select</button>
-		</li>
 	);
 }
